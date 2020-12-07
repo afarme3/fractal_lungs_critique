@@ -23,7 +23,7 @@ def duct(d, v, i, t): #Diameter, velocity, index, and (global) tree exponent are
         newV = pow(2,(-(t-2)/t))*v
         i += 1
         duct(newD,newV,i,t)
-    else:
+    else: #Exit condition of the function. Once peclet condition is met, breaks the loop and exports the relevant data. 
         global finalIndex
         global finalDiameter
         global velRatio
@@ -33,7 +33,7 @@ def duct(d, v, i, t): #Diameter, velocity, index, and (global) tree exponent are
 
 
 
-for treeExponent in ductInfo[0]:
+for treeExponent in ductInfo[0]: #Simulates the bronchial tree with each tree exponent, and stores the # of bifurcations, final velocity ratio, and final tube diameter. 
     duct(initDiameter,initVelocity,index,treeExponent)
     ductInfo[1].append(finalIndex)
     ductInfo[2].append(velRatio)
@@ -41,14 +41,14 @@ for treeExponent in ductInfo[0]:
 
 print(ductInfo)
 
-plt.subplot(2,2,1)
+plt.subplot(2,2,1) #Plot for figure 2
 plt.plot(ductInfo[0], ductInfo[1])
 plt.grid(b=True, which='both', axis='both')
 plt.title("Number of Bifurcations Needed for Optimal Diffusion Across Fractal Dimensions")
 plt.ylabel("Minimum # of bifurcations for optimal diffusion")
 plt.xlabel("Tree Diameter Exponent (fractal dimension)")
 
-plt.subplot(2,2,2)
+plt.subplot(2,2,2) #Plot for figure 3
 plt.plot(ductInfo[0], ductInfo[2],)
 plt.grid(b=True, which='both', axis='both')
 plt.title("Final Reduction in Flow Velocity versus Fractal Dimension, with varied # of Bronchial Generations ")
@@ -56,8 +56,8 @@ plt.ylabel("Final Velocity / Initial Velocity")
 plt.xlabel("Tree Diameter Exponent (fractal Dimension)")
 plt.show()
 
-plt.subplot(2,2,4)
-plt.plot(ductInfo[3], ductInfo[3])
+plt.subplot(2,2,3)
+plt.plot(ductInfo[3], ductInfo[3]) #Plot for figure 4
 plt.grid(b=True, which='both', axis='both')
 plt.title("Final Diameter of Bronchial Tube across Fractal Dimensions")
 plt.xlabel("Tree Diameter Exponent (fractal dimension)")
