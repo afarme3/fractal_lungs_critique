@@ -22,15 +22,15 @@ def duct(d, v, i, t): #Diameter, velocity, index, and (global) tree exponent are
         newV = pow(2,(-(t-2)/t))*v
         i += 1
         duct(newD,newV,i,t)
-    else:
-        global finalIndex
+    else: #Exit condition for the function loop, when the peclet number is <= 1. 
+        global finalIndex 
         global velRatio
         finalIndex = i+1 #Records the final number of bifurcations needed after tree completes. Adds 1 to include generation 0. 
         velRatio = v/initVelocity
 
 
 
-for treeExponent in ductInfo[0]:
+for treeExponent in ductInfo[0]: #Iterates through input tree exponents and records the final # of bifurcations and init/final velocity ratio produced by each tree. 
     duct(initDiameter,initVelocity,index,treeExponent)
     ductInfo[1].append(finalIndex)
     ductInfo[2].append(velRatio)
