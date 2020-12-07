@@ -18,14 +18,14 @@ def duct(d, v, i, t): #Diameter, velocity, index, and (global) tree exponent are
     global initVelocity 
     peclet = ((initDiameter*initVelocity)/0.24)*pow(2,((-i*(t-1))/t))  #Using D=0.24cm^2/s. 
     if peclet > 1:
-        newD = d/2.0
-        newV = pow(2,((-t+2)/t))*v
+        newD = pow(2,(-1/t))*d
+        newV = pow(2,(-(t-2)/t))*v
         i += 1
         duct(newD,newV,i,t)
     else:
         global finalIndex
         global velRatio
-        finalIndex = i
+        finalIndex = i+1 #Records the final number of bifurcations needed after tree completes. Adds 1 to include generation 0. 
         velRatio = v/initVelocity
 
 
@@ -39,8 +39,9 @@ print(ductInfo)
 
 plt.subplot(1,2,1)
 plt.plot(ductInfo[0], ductInfo[1])
-plt.title("Optimal # of Bifurcations for various fractal dimensions")
-plt.ylabel("Minimum # of bifurcations for diffusion")
+plt.grid(b=True, which='both', axis='both')
+plt.title("Number of Bifurcations Needed for Optimal Diffusion Across Fractal Dimensions")
+plt.ylabel("Minimum # of bifurcations for optimal diffusion")
 plt.xlabel("Tree Diameter Exponent (fractal dimension)")
 
 plt.subplot(1,2,2)

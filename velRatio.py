@@ -39,7 +39,8 @@ print(multiDucts)
 
 
 plt.plot(multiDucts[0], multiDucts[1])
-plt.title("Final/Initial Velocity ratio for varying fractal dimensions and 14 bifurcations")
+plt.title("Final Reduction in Flow Velocity versus Fractal Dimension of Bronchial Tree")
+plt.grid(b=True, which='both', axis='both')
 plt.ylabel("Final Velocity/Initial Velocity")
 plt.xlabel("Tree Diameter Exponent")
 plt.show()
